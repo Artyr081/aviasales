@@ -1,0 +1,67 @@
+$white: #FFF;
+$grey: #4A4A4A;
+
+.counttransfer {
+    position: absolute;
+    top: 10px;
+    left: -522px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    max-width: 232px;
+    max-height: 252px;
+    background-color: $white;
+    border-radius: 6px;
+
+    @media (max-width: 920px) {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
+    &__title {
+        color: $grey;
+        font-size: 12px;
+        line-height: 12px;
+        letter-spacing: 1.7px;
+        display: inline-flex;
+        margin: 20px auto;
+    }
+
+    &__list {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+    }
+
+    &__item {
+        list-style: none;
+        padding-left: 20px;
+        margin-bottom: 20px;
+        display: flex;
+
+        &:hover {
+            background-color: #F1FCFF;
+
+        }
+
+        &_input {
+            width: 20px;
+            height: 20px;
+
+            &:active {
+                border-color: #2196F3;
+            }
+        }
+
+        &_label {
+            padding-left: 10px;
+            color: $grey;
+            font-size: 13px;
+            line-height: 20px;
+            cursor: pointer;
+        }
+    }
+}

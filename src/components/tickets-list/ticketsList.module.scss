@@ -1,0 +1,26 @@
+.cards__list {
+    margin: 0;
+    padding: 0;
+}
+
+.cards__alert {
+    width: 200px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    margin: 10px 10px 10px 504px;
+
+    @media (max-width: 920px) {
+        margin: 10px auto;
+    }
+}
+
+.cards__spin {
+    margin: 10px 10px 10px 590px;
+
+    @media (max-width: 920px) {
+        display: flex;
+        justify-content: center;
+        margin: 10px auto;
+    }
+}

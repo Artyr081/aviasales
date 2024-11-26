@@ -1,0 +1,21 @@
+$body: #F3F7FA;
+$white: #FFF;
+$grey: #4A4A4A;
+
+.body {
+    display: block;
+    background-color: $body;
+    max-width: 960px;
+    max-height: 100%;
+    margin: 0 auto;
+}
+
+.header__img {
+    display: flex;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+.fixed {
+    position: relative;
+}

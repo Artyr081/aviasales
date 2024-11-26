@@ -1,0 +1,60 @@
+$white: #FFF;
+$grey: #4A4A4A;
+
+.card {
+    max-width: 502px;
+    height: 184px;
+    background-color: $white;
+    margin: 20px 0 20px 355px;
+    border-radius: 6px;
+    list-style: none;
+
+    @media (max-width: 920px) {
+        margin: 20px auto;
+    }
+
+    &__position {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    &__price {
+        color: #2196F3;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 24px;
+    }
+
+    &__img {
+        max-width: 110px;
+        max-height: 36px;
+    }
+
+    &__section {
+        display: flex;
+        justify-content: space-between;
+        max-width: 462px;
+        height: 39px;
+        padding: 0 20px 10px;
+
+        &_one {
+            display: flex;
+            flex-direction: column;
+            width: 140px;
+        }
+    }
+
+    &__text_grey {
+        color: #A0B0B9;
+        font-size: 12px;
+        list-style: 14px;
+        letter-spacing: 0.5px;
+    }
+
+    &__text_black {
+        color: $grey;
+        font-size: 14px;
+        list-style: 21px;
+    }
+}

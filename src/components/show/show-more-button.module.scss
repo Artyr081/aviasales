@@ -1,0 +1,29 @@
+$white: #FFF;
+$grey: #4A4A4A;
+.show {
+    padding-bottom: 10px;
+
+    &__button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        width: 502px;
+        height: 50px;
+        background-color: #2196F3;
+        color: $white;
+        border-radius: 5px;
+        font-size: 12px;
+        line-height: 20px;
+        letter-spacing: 0.5px;
+        margin-left: 355px;
+    
+        @media (max-width: 920px) {
+            margin: 0 auto;
+        }
+    
+        @media (max-width: 550px) {
+            width: 200px;
+        }
+    }
+}
