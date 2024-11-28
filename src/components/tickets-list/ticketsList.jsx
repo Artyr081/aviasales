@@ -1,23 +1,27 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Alert, Spin } from 'antd';
 
+import { selectTickets, selectFilterId, selectAllTransfers, selectNoTransfers, selectOneTransfer, 
+    selectTwoTransfers, selectThreeTransfers, selectShowTickets, selectLoading} from '../../redux/selector';
+import { setTicketsWindow } from '../../redux/fetchTickets'
 import Ticket from '../ticket/index';
 
 import style from './ticketsList.module.scss';
 
 export default function Tickets() {
-    const tickets = useSelector(state => state.tickets.tickets);
-    const filterId = useSelector(state => state.filterPrice.filterId);
+    const dispatch = useDispatch();
+    const tickets = useSelector(selectTickets);
+    const filterId = useSelector(selectFilterId);
 
-    const allTransfers = useSelector(state => state.filterCountTransfer.all);
-    const noTransfers = useSelector(state => state.filterCountTransfer.no_transfers);
-    const oneTransfer = useSelector(state => state.filterCountTransfer.one_transfer);
-    const twoTransfers = useSelector(state => state.filterCountTransfer.two_transfers);
-    const threeTransfers = useSelector(state => state.filterCountTransfer.three_transfers);
+    const allTransfers = useSelector(selectAllTransfers);
+    const noTransfers = useSelector(selectNoTransfers);
+    const oneTransfer = useSelector(selectOneTransfer);
+    const twoTransfers = useSelector(selectTwoTransfers);
+    const threeTransfers = useSelector(selectThreeTransfers);
 
-    const showTickets = useSelector(state => state.tickets.showTickets);
-    const loading = useSelector(state => state.tickets.loading);
+    const showTickets = useSelector(selectShowTickets);
+    const loading = useSelector(selectLoading);
     
     const filterTransfers = (items) => {
         return items.filter((transfer) => {
@@ -50,6 +54,7 @@ export default function Tickets() {
 
     const element = filterPrice(filterId).map((item) => <Ticket item={item} key={`${item.price} ${item.segments[0].duration}`}/>)
     const ticket = element.splice(0, showTickets);
+    dispatch(setTicketsWindow(ticket.length));
     
     return (
         <ul className={style.cards__list}>

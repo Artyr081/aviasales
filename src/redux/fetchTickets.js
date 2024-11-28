@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+import { setError} from './error';
+
 export const fetchSearchId = createAsyncThunk('aviasales/searchId', async () => {
     try{
         const id = await fetch('https://aviasales-test-api.kata.academy/search')
@@ -13,7 +15,7 @@ export const fetchSearchId = createAsyncThunk('aviasales/searchId', async () => 
         console.log('fetchSerachId', err)
     }
 })
-export const fetchTickets = createAsyncThunk('aviasales/searchTicketsList', async (key) => {
+export const fetchTickets = createAsyncThunk('aviasales/searchTicketsList', async (key, {dispatch}) => {
     try{
         const ticketsList = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${key}`)
         if (!ticketsList.ok) {
@@ -22,7 +24,11 @@ export const fetchTickets = createAsyncThunk('aviasales/searchTicketsList', asyn
 
         return await ticketsList.json();
     } catch (err) {
-        console.log('fetchTickets', err)
+        if (err.message === '500') {
+            return;
+        }
+        dispatch(setError());
+        
     }
 })
 
@@ -32,7 +38,8 @@ const initialState = {
     toFetch: false,
     num: 0,
     showTickets: 5,
-    loading: false
+    loading: false,
+    ticketsWindow: 0,
 }
 
 export const tickets = createSlice({
@@ -41,7 +48,10 @@ export const tickets = createSlice({
     reducers: {
         setShowTickets(state, action) {
             state.showTickets += 5;
-        }
+        },
+        setTicketsWindow(state, action) {
+            state.ticketsWindow = action.payload
+        },
 
     },
     extraReducers: (builder) => {
@@ -79,6 +89,6 @@ export const tickets = createSlice({
     }
 })
 
-export const { setShowTickets } = tickets.actions;
+export const { setShowTickets, setTicketsWindow } = tickets.actions;
 
 export default tickets.reducer;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { selectId } from '../../redux/selector'; 
 import { setFilterPrice } from '../../redux/filterPrice';
 
 
@@ -8,10 +9,13 @@ import style from './filter.module.scss';
 
 export default function Filter() {
     const dispatch = useDispatch();
-    const id = useSelector(state => state.filterPrice.filterId)
+    const id = useSelector(selectId);
 
-    const filter = ['Самый дешевый', 'Самый быстрый', 'Оптимальный']
-    let key = 0;
+    const filter = [
+        { id: 1, name: 'Самый дешевый'}, 
+        { id: 2, name: 'Самый быстрый'}, 
+        { id: 3, name: 'Оптимальный'},
+    ]
 
     const element = filter.map((item, index) => {
         let className = `${style.filter__button}`
@@ -20,8 +24,8 @@ export default function Filter() {
         }
 
         return (
-            <li className={style.filter__item} key={key++}>
-                <button className={className} onClick={() => dispatch(setFilterPrice(index))}>{item}</button>
+            <li className={style.filter__item} key={item.id}>
+                <button className={className} onClick={() => dispatch(setFilterPrice(index))}>{item.name}</button>
             </li>
         )
     }

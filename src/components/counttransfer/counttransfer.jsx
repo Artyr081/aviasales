@@ -1,17 +1,18 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import {selectAllTransfers, selectNoTransfers, selectOneTransfer, selectTwoTransfers, selectThreeTransfers } from '../../redux/selector';
 import { setAll, setNoTransfers, setOneTransfer, setTwoTransfers, setThreeTransfers } from '../../redux/filterCountTransfer';
 
 import style from './counttransfer.module.scss';
 
 export default function counttransfer() {
     const dispatch = useDispatch();
-    const all = useSelector(state => state.filterCountTransfer.all)
-    const noTransfers = useSelector(state => state.filterCountTransfer.no_transfers)
-    const onetransfer = useSelector(state => state.filterCountTransfer.one_transfer)
-    const twotransfers = useSelector(state => state.filterCountTransfer.two_transfers)
-    const threetransfers = useSelector(state => state.filterCountTransfer.three_transfers)
+    const all = useSelector(selectAllTransfers);
+    const noTransfers = useSelector(selectNoTransfers);
+    const onetransfer = useSelector(selectOneTransfer);
+    const twotransfers = useSelector(selectTwoTransfers);
+    const threetransfers = useSelector(selectThreeTransfers);
     
     return (
         <section className={style.counttransfer}>
